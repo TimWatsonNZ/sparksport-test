@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { Button } from 'semantic-ui-react';
 import logo from './logo.svg';
-import './App.css';
+import './style/App.css';
 
-import axios from 'axios';
-
-const testApi = () => axios.get('/movie');
+const movieService = require('./services/movieService');
 
 function App() {
   const [testResult, setTestResult] = useState('');
 
   useEffect(() => {
-    testApi().then(result => setTestResult(JSON.stringify(result.data, null, 2)));
+    movieService.search('godzilla')
+      .then(result => setTestResult(JSON.stringify(result.data, null, 2)));
   }, []);
 
   return (
