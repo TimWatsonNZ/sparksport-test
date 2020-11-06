@@ -4,13 +4,13 @@ import './App.css';
 
 import axios from 'axios';
 
-const testApi = () => axios.get('/ping');
+const testApi = () => axios.get('/movie');
 
 function App() {
   const [testResult, setTestResult] = useState('');
 
   useEffect(() => {
-    testApi().then(result => setTestResult(result.data));
+    testApi().then(result => setTestResult(JSON.stringify(result.data, null, 2)));
   }, []);
 
   return (
