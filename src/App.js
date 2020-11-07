@@ -1,36 +1,31 @@
 import { useEffect, useState } from "react";
-import { Button } from 'semantic-ui-react';
-import logo from './logo.svg';
+
+import { Search } from 'semantic-ui-react'
+
 import './style/App.css';
 
 const movieService = require('./services/movieService');
 
 function App() {
-  const [testResult, setTestResult] = useState('');
+  const [searchTerm, setSearchTerm] = useState(''); 
+  const [testResult, setTestResult] = useState([]);
 
   useEffect(() => {
     movieService.search('godzilla')
-      .then(result => setTestResult(JSON.stringify(result.data, null, 2)));
-  }, []);
+      .then(result => setTestResult(result.data.results.slice(0, 10)));
+  }, [searchTerm]);
 
   return (
     <div className="App">
-      <Button>Click Here!</Button>
-      <span>{testResult}</span>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search placeholder="Search for a movie"
+        onSearchChange={(event, value) => {
+          setSearchTerm(value.result)
+        }}
+        // resultRenderer={resultRenderer}
+        results={testResult}
+        value={searchTerm}
+      ></Search>
+      
     </div>
   );
 }
