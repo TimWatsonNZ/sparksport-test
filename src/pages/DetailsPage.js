@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Grid, Segment, Header } from 'semantic-ui-react';
+import { useParams } from 'react-router-dom';
 import MoviePoster from '../components/moviePoster';
 const movieService = require('../services/movieService');
 
-function DetailsPage({ movieId }) {
+function DetailsPage(props) {
+  let { id } = useParams();
+  const movieId = id;
   const [movie, setMovie] = useState(undefined);
   const [credits, setCredits] = useState([]);
 
