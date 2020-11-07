@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     movieService.search('godzilla')
-      .then(result => setTestResult(result.data.results.slice(0, 10)));
+      .then(result => setTestResult(result.results.slice(0, 10)));
   }, [searchTerm]);
 
   return (

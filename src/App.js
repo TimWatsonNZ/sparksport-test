@@ -5,7 +5,7 @@ import DetailsPage from './pages/DetailsPage';
 
 const routes = {
   '/': () => <SearchPage />,
-  '/details': () => <DetailsPage />
+  '/details/:movieId': ({movieId}) => <DetailsPage movieId={movieId} />
 }
 
 function App() {
