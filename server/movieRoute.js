@@ -21,7 +21,6 @@ router.get('/', async (req, res) => {
     method: 'get',
     url: `${baseUrl}search/movie?api_key=${api_key}&${standardQueryParams}&query=${searchTerm}'`,
   };
-
   const result = await axios(config);
   res.json(result.data);
 });
@@ -42,7 +41,25 @@ router.get('/:id', async (req, res) => {
 
   const result = await axios(config);
   res.json(result.data);
+});
 
+router.get('/:id/credits', async (req, res) => {
+  const params = req.params;
+
+  const movieId = (params && params.id) || '';
+
+  if (!movieId) {
+    res.json({})
+    return;
+  }
+
+  const config = {
+    method: 'get',
+    url: `${baseUrl}movie/${movieId}/credits?api_key=${api_key}&${standardQueryParams}`,
+  };
+
+  const result = await axios(config);
+  res.json(result.data);
 });
 
 module.exports = router;

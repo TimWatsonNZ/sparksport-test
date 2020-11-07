@@ -9,4 +9,8 @@ const getById = (id) =>
   axios.get(`/api/movie/${id}`)
     .then(result => result.data);
 
-export { search, getById };
+const getCredits = (id) => 
+  axios.get(`/api/movie/${id}/credits`)
+    .then(result => result.data);
+
+export { search, getById, getCredits };
