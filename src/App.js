@@ -1,31 +1,19 @@
-import { useEffect, useState } from "react";
+import { useRoutes } from 'hookrouter';
 
-import { Search } from 'semantic-ui-react'
+import SearchPage from './pages/SearchPage';
+import DetailsPage from './pages/DetailsPage';
 
-import './style/App.css';
-
-const movieService = require('./services/movieService');
+const routes = {
+  '/': () => <SearchPage />,
+  '/details': () => <DetailsPage />
+}
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState(''); 
-  const [testResult, setTestResult] = useState([]);
-
-  useEffect(() => {
-    movieService.search('godzilla')
-      .then(result => setTestResult(result.data.results.slice(0, 10)));
-  }, [searchTerm]);
+  const routeResult = useRoutes(routes);
 
   return (
     <div className="App">
-      <Search placeholder="Search for a movie"
-        onSearchChange={(event, value) => {
-          setSearchTerm(value.result)
-        }}
-        // resultRenderer={resultRenderer}
-        results={testResult}
-        value={searchTerm}
-      ></Search>
-      
+      {routeResult}
     </div>
   );
 }
