@@ -1,5 +1,8 @@
-# Spark Sport Test created with react-react-app and express
+# Spark Sport Test 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Express is used for the backend with axios as the api library and semantic-ui-react as the view library.
+
+Run npm install to install packages and npm run start to run the dev server. To run the backend use npm run serve, without this the api won't work.
 
 ## Available Scripts
 
